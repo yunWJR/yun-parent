@@ -8,7 +8,7 @@
 
     <groupId>com.github.yunwjr</groupId>
     <artifactId>yun-parent</artifactId>
-    <version>0.0.1.RELEASE</version>
+    <version>0.0.2.RELEASE</version>
     <name>yun-parent</name>
     <description>用于发布 com.github.yunwjr 下开源框架到maven center的parent pom</description>
     <url>https://github.com/yunWJR/yun-parent</url>
@@ -43,7 +43,7 @@
         <java.version>1.8</java.version>
         <maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
         <maven.source.plugin.version>3.2.1</maven.source.plugin.version>
-        <maven.javadoc.plugin.version>2.10.4</maven.javadoc.plugin.version>
+        <maven.javadoc.plugin.version>3.2.0</maven.javadoc.plugin.version>
         <maven.gpg.plugin.version>1.6</maven.gpg.plugin.version>
     </properties>
 
@@ -71,7 +71,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>2.9.1</version>
+                        <version>${maven.javadoc.plugin.version}</version>
                         <configuration>
                             <source>${java.version}</source>
                             <show>private</show>
@@ -79,8 +79,7 @@
                             <charset>UTF-8</charset>
                             <encoding>UTF-8</encoding>
                             <docencoding>UTF-8</docencoding>
-                            <additionalparam>-Xdoclint:none
-                            </additionalparam>  <!-- TODO 临时解决不规范的javadoc生成报错,后面要规范化后把这行去掉 -->
+                            <additionalJOption>-Xdoclint:none</additionalJOption>  <!-- TODO 临时解决不规范的javadoc生成报错 -->
                         </configuration>
                         <executions>
                             <execution>
@@ -175,20 +174,20 @@
                 </executions>
             </plugin>
 
-            <!--            &lt;!&ndash; Javadoc &ndash;&gt;-->
-            <!--            <plugin>-->
-            <!--                <groupId>org.apache.maven.plugins</groupId>-->
-            <!--                <artifactId>maven-javadoc-plugin</artifactId>-->
-            <!--                <version>${maven.javadoc.plugin.version}</version>-->
-            <!--                <executions>-->
-            <!--                    <execution>-->
-            <!--                        <phase>package</phase>-->
-            <!--                        <goals>-->
-            <!--                            <goal>jar</goal>-->
-            <!--                        </goals>-->
-            <!--                    </execution>-->
-            <!--                </executions>-->
-            <!--            </plugin>-->
+            <!-- Javadoc -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${maven.javadoc.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
 
             <!-- Gpg Signature -->
             <plugin>
